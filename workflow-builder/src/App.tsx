@@ -52,6 +52,16 @@ function App() {
         ? "New log message"
         : type === "color"
           ? "New styled message"
+          : type === "name"
+            ? "John Doe"
+            : type === "email"
+              ? "john@example.com"
+            : type === "delay"
+              ? "1000"
+            : type === "condition"
+              ? "name==John Doe"
+            : type === "http"
+              ? "https://jsonplaceholder.typicode.com/todos/1"
           : "",
     color: type === "color" ? "#22c55e" : "#94a3b8",
   });
@@ -204,7 +214,12 @@ function App() {
     if (
       droppedType !== "start" &&
       droppedType !== "log" &&
-      droppedType !== "color"
+      droppedType !== "color" &&
+      droppedType !== "name" &&
+      droppedType !== "email" &&
+      droppedType !== "delay" &&
+      droppedType !== "condition" &&
+      droppedType !== "http"
     ) {
       return;
     }

@@ -19,7 +19,7 @@ class StoreWorkflowRequest extends FormRequest
             'description' => ['nullable', 'string'],
             'nodes' => ['required', 'array', 'min:1'],
             'nodes.*.id' => ['required', 'string', 'max:120'],
-            'nodes.*.type' => ['required', Rule::in(['start', 'log', 'color'])],
+            'nodes.*.type' => ['required', Rule::in(['start', 'log', 'color', 'name', 'email', 'delay', 'condition', 'http'])],
             'nodes.*.x' => ['required', 'integer', 'min:0'],
             'nodes.*.y' => ['required', 'integer', 'min:0'],
             'nodes.*.text' => ['nullable', 'string'],

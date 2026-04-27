@@ -1,4 +1,12 @@
-export type NodeType = "start" | "log" | "color";
+export type NodeType =
+  | "start"
+  | "log"
+  | "color"
+  | "name"
+  | "email"
+  | "delay"
+  | "condition"
+  | "http";
 
 export type WorkflowNode = {
   id: string;

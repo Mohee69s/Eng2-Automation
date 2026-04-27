@@ -7,8 +7,28 @@ type NodeSidebarProps = {
   hasStartNode?: boolean;
 };
 
+const nodeSidebarLabel: Record<NodeType, string> = {
+  start: "🚀 Start Node",
+  log: "📝 Log Node",
+  color: "🎨 Color Node",
+  name: "👤 Name Node",
+  email: "✉️ Email Node",
+  delay: "⏱️ Delay Node",
+  condition: "🔀 Condition Node",
+  http: "🌐 HTTP Node",
+};
+
 export function NodeSidebar({
-  nodeTypes = ["start", "log", "color"],
+  nodeTypes = [
+    "start",
+    "log",
+    "color",
+    "name",
+    "email",
+    "delay",
+    "condition",
+    "http",
+  ],
   hasStartNode = false,
 }: NodeSidebarProps) {
   const handleDragStart = (
@@ -41,11 +61,7 @@ export function NodeSidebar({
                 startDisabled ? "Only one Start node is allowed" : undefined
               }
             >
-              {type === "start"
-                ? "Start Node"
-                : type === "log"
-                  ? "Log Node"
-                  : "Color Node"}
+              {nodeSidebarLabel[type]}
             </button>
           );
         })}

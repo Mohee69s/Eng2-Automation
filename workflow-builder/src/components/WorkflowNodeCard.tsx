@@ -39,15 +39,33 @@ export function WorkflowNodeCard({
             ? "Start Node"
             : node.type === "log"
               ? "Log Node"
-              : "Color Node"}
+              : node.type === "color"
+                ? "Color Node"
+                : node.type === "name"
+                  ? "Name Node"
+                  : node.type === "email"
+                    ? "Email Node"
+                    : node.type === "delay"
+                      ? "Delay Node"
+                      : node.type === "condition"
+                        ? "Condition Node"
+                        : "HTTP Node"}
         </strong>
         <span className="node-id">{node.id.slice(0, 4)}</span>
       </div>
 
       {node.type !== "start" && (
         <label>
-          Text
+          {node.type === "delay"
+            ? "Delay (ms)"
+            : node.type === "condition"
+              ? "Condition"
+              : node.type === "http"
+                ? "URL"
+              : "Text"}
           <input
+            type={node.type === "delay" ? "number" : "text"}
+            min={node.type === "delay" ? 0 : undefined}
             value={node.text}
             onChange={(event) =>
               onUpdateNode(node.id, { text: event.target.value })
@@ -55,6 +73,13 @@ export function WorkflowNodeCard({
             onClick={(event) => event.stopPropagation()}
           />
         </label>
+      )}
+
+      {node.type === "condition" && (
+        <small>
+          Use format: value==value OR value!=value. First edge is true, second is
+          false.
+        </small>
       )}
 
       {node.type === "color" && (
